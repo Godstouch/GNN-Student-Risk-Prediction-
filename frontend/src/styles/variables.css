@@ -1,0 +1,77 @@
+/* ==========================================================================
+   EarlyFlag — Global Design Tokens
+   Single source of truth for color. Every page and component reads from
+   these variables — never hardcode a hex value directly in a component.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand ---- */
+  --color-brand: #1e3a5f; /* Deep blue — header, nav, primary chrome */
+  --color-brand-dark: #14293f; /* Hover/active state for brand elements */
+  --color-brand-light: #e8eef4; /* Tinted backgrounds behind brand elements */
+
+  /* ---- Accent (interactive elements: links, buttons, focus rings) ---- */
+  --color-accent: #2563eb;
+  --color-accent-dark: #1d4ed8; /* Hover state */
+  --color-accent-light: #dbeafe; /* Tinted backgrounds, selected states */
+
+  /* ---- Risk tiers ----
+     Deliberately NOT pure red/green: red-green colorblindness is common,
+     and misreading a risk tier has real consequences. Always pair these
+     colors with an icon or label in the UI — never rely on color alone. */
+  --color-risk-high: #dc2626;
+  --color-risk-high-bg: #fee2e2; /* Light background for badges/cards */
+  --color-risk-high-border: #fca5a5;
+
+  --color-risk-medium: #d97706;
+  --color-risk-medium-bg: #fef3c7;
+  --color-risk-medium-border: #fcd34d;
+
+  --color-risk-low: #059669;
+  --color-risk-low-bg: #d1fae5;
+  --color-risk-low-border: #6ee7b7;
+
+  /* ---- Neutrals / surfaces ---- */
+  --color-background: #f8fafc; /* App background — off-white, not stark white */
+  --color-surface: #ffffff; /* Cards, panels, modals */
+  --color-surface-raised: #ffffff; /* Elevated surfaces (same fill, differentiate via shadow) */
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  /* ---- Text ---- */
+  --color-text-primary: #1e293b; /* Near-black, not pure black */
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-text-on-brand: #ffffff; /* Text placed on --color-brand backgrounds */
+  --color-text-on-accent: #ffffff;
+
+  /* ---- Status (non-risk system states: sync, connectivity) ---- */
+  --color-status-online: #059669;
+  --color-status-offline: #94a3b8;
+  --color-status-syncing: #d97706;
+  --color-status-error: #dc2626;
+
+  /* ---- Shadows (kept subtle — this is a working tool, not a marketing page) ---- */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 2px 8px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.12);
+
+  /* ---- Focus ring (accessibility — keep visible, never remove) ---- */
+  --focus-ring: 0 0 0 3px var(--color-accent-light);
+}
+
+/* ==========================================================================
+   Dark mode (optional — enable later if needed; not required for MVP)
+   Uncomment and refine if the teacher evaluation study calls for it.
+   ========================================================================== */
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0F172A;
+    --color-surface: #1E293B;
+    --color-border: #334155;
+    --color-text-primary: #F1F5F9;
+    --color-text-secondary: #94A3B8;
+  }
+}
+*/
