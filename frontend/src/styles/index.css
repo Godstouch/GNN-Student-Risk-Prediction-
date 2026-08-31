@@ -1,0 +1,56 @@
+@import "./variables.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+
+  /* Always-visible focus ring for keyboard navigation */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+}
+
+@layer components {
+  /* Reusable risk-badge base — modifiers applied via data attribute */
+  .risk-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .risk-badge[data-tier="high"] {
+    color: var(--color-risk-high);
+    background-color: var(--color-risk-high-bg);
+    border-color: var(--color-risk-high-border);
+  }
+
+  .risk-badge[data-tier="medium"] {
+    color: var(--color-risk-medium);
+    background-color: var(--color-risk-medium-bg);
+    border-color: var(--color-risk-medium-border);
+  }
+
+  .risk-badge[data-tier="low"] {
+    color: var(--color-risk-low);
+    background-color: var(--color-risk-low-bg);
+    border-color: var(--color-risk-low-border);
+  }
+}
