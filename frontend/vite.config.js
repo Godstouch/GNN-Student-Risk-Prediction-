@@ -7,17 +7,10 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      // Precache the app shell (JS, CSS, HTML) so the UI loads even with
-      // zero connectivity — this is what makes "offline-first" real rather
-      // than just a claim in the proposal.
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
         runtimeCaching: [
           {
-            // Cache calls to the local Flask/ONNX API on the Pi.
-            // NetworkFirst: try the live prediction first (fresh data),
-            // fall back to the last cached response if the Pi is
-            // unreachable — e.g. teacher briefly steps out of WiFi range.
             urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
             handler: 'NetworkFirst',
             options: {
@@ -41,16 +34,8 @@ export default defineConfig({
         display: 'standalone',
         start_url: '/dashboard',
         icons: [
-          {
-            src: '/icons/icon-192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/icons/icon-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
+          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
           {
             src: '/icons/icon-512.png',
             sizes: '512x512',
@@ -59,10 +44,13 @@ export default defineConfig({
           },
         ],
       },
-      // Lets you test offline behavior locally with `npm run dev`,
-      // not just in a production build.
+      // Off by default during day-to-day development — the dev-mode
+      // service worker precaches the app shell and can silently serve
+      // stale JS/CSS while you're actively editing. Flip to true only
+      // when you specifically need to test offline/install behavior,
+      // then flip it back off afterward.
       devOptions: {
-        enabled: true,
+        enabled: false,
       },
     }),
   ],
